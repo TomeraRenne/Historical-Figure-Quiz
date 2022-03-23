@@ -22,6 +22,22 @@
     <div class="main">
         
 
+
+        <script text="javascript">
+            function getCSV(){
+                var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+                req.open("get", "Historical Figure.csv", true); // アクセスするファイルを指定
+                req.send(null); // HTTPリクエストの発行
+	
+                // レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ	
+                req.onload = function(){
+	            convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
+                }
+            }   
+            
+        </script>
+        
+
     </div>
 
     <div class="footer">
