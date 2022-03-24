@@ -85,19 +85,29 @@ function what_type_of_question(chosen_column)
   }
 }
 
+function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
+  var all_answers = [correct_answer, fake_answer_1 , fake_answer_2];
+  var all_answers_copy = [correct_answer, fake_answer_1 , fake_answer_2];
+  var answers_with_letter_dict = {'A':None, 'B':None, 'C':None};
+  for key in answers_with_letter_dict{
+    var chosen_answer = 
+  
+
+
+
 function ask_name_question(items,chosen_row){
   console.log("Please choose who was famous for this:" + items[chosen_row][2])
-  random_rows=  pick_two_random_rows(items,chosen_row)
+  var random_rows=  pick_two_random_rows(items,chosen_row);
   return
-  randomly_order_answers(items[chosen_row][0], items[random_row[0]][0],items[random_rows[1]][0])
+  randomly_order_answers(items[chosen_row][0], items[random_row[0]][0],items[random_rows[1]][0]);
 }
 
 function ask_coutry_question(items,chosen_row){
   console.log("Where did " + items[chosen_row][0] + " mainly work?")
   
-  random_rows=  pick_two_random_rows(items,chosen_row)
+  var random_rows=  pick_two_random_rows(items,chosen_row)
   return
-  randomly_order_answers(items[chosen_row][1], items[random_row[0]][0],items[random_rows[1]][0])
+  randomly_order_answers(items[chosen_row][1], items[random_row[0]][0],items[random_rows[1]][0]);
 }
 
 // ファイル読み取り失敗時
