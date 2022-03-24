@@ -85,6 +85,21 @@ function what_type_of_question(chosen_column)
   }
 }
 
+function ask_name_question(items,chosen_row){
+  console.log("Please choose who was famous for this:" + items[chosen_row][2])
+  random_rows=  pick_two_random_rows(items,chosen_row)
+  return
+  randomly_order_answers(items[chosen_row][0], items[random_row[0]][0],items[random_rows[1]][0])
+}
+
+function ask_coutry_question(items,chosen_row){
+  console.log("Where did " + items[chosen_row][0] + " mainly work?")
+  
+  random_rows=  pick_two_random_rows(items,chosen_row)
+  return
+  randomly_order_answers(items[chosen_row][1], items[random_row[0]][0],items[random_rows[1]][0])
+}
+
 // ファイル読み取り失敗時
 fileReader.onerror = () => {
   items = [];
