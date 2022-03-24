@@ -89,13 +89,19 @@ function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
   var all_answers = [correct_answer, fake_answer_1 , fake_answer_2];
   var all_answers_copy = [correct_answer, fake_answer_1 , fake_answer_2];
   var answers_with_letter_dict = {'A':None, 'B':None, 'C':None};
-  for key in answers_with_letter_dict{
-    var random_num = Math.fllor( Math.random()* all_answers.length);
-    var chosen_answer = all_answers[random_num];
+  for (var key in answers_with_letter_dict){
+    var random_num = Math.floor( Math.random()* all_answers.length);
+    var chosen_answer = all_answers[random_num-1];
     var answers_with_letter_dict[key] = chosen_answer;
     
     console.log(key + ' :  ' + answers_with_letter_dict[key]);
-    all_answers
+    var all_answers = all_answers.splice(random_num-1,1);
+
+    console.log();
+    var user_answer =
+  }
+}
+
     
   
 
@@ -104,16 +110,14 @@ function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
 function ask_name_question(items,chosen_row){
   console.log("Please choose who was famous for this:" + items[chosen_row][2])
   var random_rows=  pick_two_random_rows(items,chosen_row);
-  return
-  randomly_order_answers(items[chosen_row][0], items[random_row[0]][0],items[random_rows[1]][0]);
+  return randomly_order_answers(items[chosen_row][0], items[random_row[0]][0],items[random_rows[1]][0]);
 }
 
 function ask_coutry_question(items,chosen_row){
   console.log("Where did " + items[chosen_row][0] + " mainly work?")
   
   var random_rows=  pick_two_random_rows(items,chosen_row)
-  return
-  randomly_order_answers(items[chosen_row][1], items[random_row[0]][0],items[random_rows[1]][0]);
+  return randomly_order_answers(items[chosen_row][1], items[random_row[0]][0],items[random_rows[1]][0]);
 }
 
 // ファイル読み取り失敗時
