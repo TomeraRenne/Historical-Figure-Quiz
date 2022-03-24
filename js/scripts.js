@@ -56,10 +56,10 @@ fileReader.onload = () => {
   message.innerHTML = items.length + "件のデータを読み込みました。"
 }
 
-function pick_two_random_rows(new_data,chosen_row){
-var random_rows = [Math.floor( Math.random()*(new_data.length-1)+1) , Math.floor( Math.random()*(new_data.length-1)+1)];
+function pick_two_random_rows(items,chosen_row){
+var random_rows = [Math.floor( Math.random()*(items.length-1)+1) , Math.floor( Math.random()*(items.length-1)+1)];
   while(chosen_row in random_rows || random_rows[0]== random_rows[1]){
-    var random_rows = [Math.floor( Math.random()*(new_data.length-1)+1) , Math.floor( Math.random()*(new_data.length-1)+1)];
+    var random_rows = [Math.floor( Math.random()*(items.length-1)+1) , Math.floor( Math.random()*(items.length-1)+1)];
   }
   return random_rows;
   
