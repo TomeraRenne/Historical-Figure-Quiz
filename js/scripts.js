@@ -90,7 +90,13 @@ function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
   var all_answers_copy = [correct_answer, fake_answer_1 , fake_answer_2];
   var answers_with_letter_dict = {'A':None, 'B':None, 'C':None};
   for key in answers_with_letter_dict{
-    var chosen_answer = 
+    var random_num = Math.fllor( Math.random()* all_answers.length);
+    var chosen_answer = all_answers[random_num];
+    var answers_with_letter_dict[key] = chosen_answer;
+    
+    console.log(key + ' :  ' + answers_with_letter_dict[key]);
+    all_answers
+    
   
 
 
