@@ -85,7 +85,8 @@ function what_type_of_question(chosen_column)
   }
 }
 
-function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
+//under constructed...
+/*function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
   var all_answers = [correct_answer, fake_answer_1 , fake_answer_2];
   var all_answers_copy = [correct_answer, fake_answer_1 , fake_answer_2];
   var answers_with_letter_dict = {'A':None, 'B':None, 'C':None};
@@ -100,7 +101,7 @@ function randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2){
     console.log();
     var user_answer =
   }
-}
+}*/
 
     
   
