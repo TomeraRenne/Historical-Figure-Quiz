@@ -1,9 +1,9 @@
 <template>
   <h1>Historical Figure Quiz</h1>
   <h2>ようこそ歴史人物道場へ！</h2>
-  <Readcsv />
+  <Readcsv @sendQuestion='question =$event' @sendPortions='portions =$event'/>
   <button @click='start'>play</button>
-  <Question :question='question' v-if="isPlaying" />
+  <Question :question="question" :portions="portions" v-if="isPlaying" />
   <Choicebutton v-if="isPlaying"/>
 </template>
 
@@ -18,6 +18,7 @@ export default {
   data(){
     return{
       isPlaying: false,
+      question:""
       
      
 
@@ -28,7 +29,9 @@ export default {
   methods:{
     start(){
       this.isPlaying = true
-    }
+    },
+    
+    
   }
   
 }
