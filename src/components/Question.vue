@@ -1,8 +1,9 @@
 <template>
     <div class="question">
-        <h1>Let's start the quiz!</h1>
-        <h2>{{ question }}</h2>
-        <h3>{{ portions }}</h3>
+        <h1>'Welcome to the Historical Figure Quiz!!'</h1>
+        <p>{{ round_num }}</p>
+        <h2>{{ question.value }}</h2>
+        <h3>{{ portions.value }}</h3>
         
     </div>
 </template>
@@ -16,12 +17,26 @@ export default {
 
     
     data(){
-        return{
-            question:"",
-            portions:"",
+        return{           
+            round_num:"CurrentRound 1",
+            lives_remaining : 3,
+            game_still_going : true,
+            //game_still_going == lives_remaining >=1,
+            current_round : 1,
+            score : 0,
+            play_again : 'Y',
+            score_list : [],
+            result : null
+            
 
         };
-    }
+    },
+    
+    
+    
+
+    
+    
     
 
 }
