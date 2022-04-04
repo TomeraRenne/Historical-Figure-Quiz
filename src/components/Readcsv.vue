@@ -174,7 +174,7 @@ export default {
       }else if(question_type=="Country"){
           this.$set(this.result, "result", ask_country_question(new_data,random_row))
       }else if(question_type=="Main Achievement"){
-          this.$set(this.result, "result", ask_country_question(new_data,random_row))
+          this.$set(this.result, "result", ask_main_achievement_question(new_data,random_row))
       }else if(question_type=="Key Word"){
           this.$set(this.result,"result",ask_key_word_question(new_data,random_row))
       }else if(question_type=="Year"){
