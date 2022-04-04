@@ -1,9 +1,9 @@
 <template>
 
   
-    <div class="btn btn--orange btn--radius" @click='A'>A</div>
-    <div class="btn btn--orange btn--radius" @click='B'>B</div>
-    <div class="btn btn--orange btn--radius" @click='C'>C</div>
+    <div class="btn btn--orange btn--radius" @click='send_button'>A</div>
+    <div class="btn btn--orange btn--radius" @click='send_button'>B</div>
+    <div class="btn btn--orange btn--radius" @click='send_button'>C</div>
 
 </template>
 
@@ -19,14 +19,22 @@ export default {
   },
   methods:{
     A(){
-      this.AisPushed = true
+      this.AisPushed = true      
     },
     B(){
       this.BisPushed = true
-    },
+    },  
     C(){
-      this.CisPushed = true
+      this.CisPushed = true      
     },
+    /* send_button(){
+      this.$emit("sendA",this.AisPushed)
+      this.$emit("sendB",this.BisPushed)
+      this.$emit("sendC",this.CisPushed)
+    }, */
+
+    
+   
     
 
   }
