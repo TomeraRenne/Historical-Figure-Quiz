@@ -3,12 +3,11 @@
     <input type="file" @change="loadCsvFile"  @click='send'/>
     <p>{{ message }}</p>
     <p>{{ new_data }}</p>
-
     <p>{{ random_rows }}</p>
-    <p>{{ roundom_row }}</p>
+    <p>{{ round_row }}</p>
     <button @click=" pick_two_random_rows(new_data,random_row);gameplay($event);randomly_order_answers(correct_answer, fake_answer_1, fake_answer_2)" >START</button>
-    <p>{{ random_row }}</p>
-
+    <p>{{ chosen_row }}</p>
+    <p>{{ portions }}</p>
 
 
     <table border="1"  class="table">
@@ -34,7 +33,7 @@ export default {
       random_row:0,
       random_column:0,
       current_round:1,
-      random_row:0,
+      chosen_row:0,
       question:"",
       portions:"",
       random_rows:[],
@@ -77,12 +76,12 @@ export default {
       this.$emit("sendPortions",this.portions);
     },
     
-    pick_two_random_rows:function(new_data,random_rows,random_row){
+    pick_two_random_rows:function(new_data,chosen_row,random_rows){
       this.random_rows = [Math.floor( Math.random()*(new_data.length-1)+1) , Math.floor( Math.random()*(new_data.length-1)+1)]
-      //if(random_row in random_rows || random_rows[0]== random_rows[1]){
-        //this.random_rows= [Math.floor( Math.random()*(new_data.length-1)+1) , Math.floor( Math.random()*(new_data.length-1)+1)]
+      if(chosen_row in random_rows || random_rows[0]== random_rows[1]){
+        this.random_rows= [Math.floor( Math.random()*(new_data.length-1)+1) , Math.floor( Math.random()*(new_data.length-1)+1)]
  
-      //}
+      }
       //console.log(random_rows)
       //return random_rows;      
     },
@@ -132,52 +131,51 @@ export default {
 
       }
     },
-    ask_name_question:function(new_data,random_row){         
-      this.question="Please choose the person who was famous for this: " + new_data[random_row][2]    
-      this.random_rows=pick_two_random_rows(new_data,random_row);
-      return randomly_order_answers(new_data[random_row][0],new_data[random_rows[0]][0], new_data[random_rows[1]][0]);
+    ask_name_question:function(new_data,chosen_row){         
+      this.question="Please choose the person who was famous for this: " + new_data[chosen_row][2]    
+      this.random_rows=pick_two_random_rows(new_data,chosen_row);
+      return randomly_order_answers(new_data[chosen_row][0],new_data[random_rows[0]][0], new_data[random_rows[1]][0]);
     },
 
-    ask_country_question:function(new_data,random_row){       
-      this.$set(this.question,"value", "Where did "+ new_data[random_row][0] + " mainly work?")
-      this.$set(this.random_rows,"value", pick_two_random_rows(new_data,random_row));
-      return randomly_order_answers(new_data[random_row][1],new_data[random_rows[0]][1], new_data[random_rows[1]][1]);
+    ask_country_question:function(new_data,chosen_row){       
+      this.$set(this.question,"value", "Where did "+ new_data[chosen_row][0] + " mainly work?")
+      this.$set(this.random_rows,"value", pick_two_random_rows(new_data,chosen_row));
+      return randomly_order_answers(new_data[chosen_row][1],new_data[random_rows[0]][1], new_data[random_rows[1]][1]);
     },
 
-    ask_main_achievement_question:function(new_data,random_row){       
-      this.$set(this.question,"value" ,"What did "+ new_data[random_row][0] + " do in about " + new_data[random_row][4] + "?")
-      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,random_row));
-      return randomly_order_answers(new_data[random_row][2],new_data[random_rows[0]][2], new_data[random_rows[1]][2]);
+    ask_main_achievement_question:function(new_data,chosen_row){       
+      this.$set(this.question,"value" ,"What did "+ new_data[chosen_row][0] + " do in about " + new_data[chosen_row][4] + "?")
+      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,chosen_row));
+      return randomly_order_answers(new_data[chosen_row][2],new_data[random_rows[0]][2], new_data[random_rows[1]][2]);
     },
 
-    ask_key_word_question:function(new_data,random_row){       
-      this.$set(this.question,"value","Which words are the most related to " + new_data[random_row][0] + "?")
-      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,random_row));
-      return randomly_order_answers(new_data[random_row][3],new_data[random_rows[0]][3], new_data[random_rows[1]][3]);
+    ask_key_word_question:function(new_data,chosen_row){       
+      this.$set(this.question,"value","Which words are the most related to " + new_data[chosen_row][0] + "?")
+      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,chosen_row));
+      return randomly_order_answers(new_data[chosen_row][3],new_data[random_rows[0]][3], new_data[random_rows[1]][3]);
     },
 
-    ask_year_question:function(new_data,random_row){       
-      this.$set(this.question,"value", "When did " + new_data[random_row][0] + " " + new_data[random_row][2] + "?")
-      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,random_row));
-      return randomly_order_answers(new_data[random_row][4],new_data[random_rows[0]][4], new_data[random_rows[1]][4]);
+    ask_year_question:function(new_data,chosen_row){       
+      this.$set(this.question,"value", "When did " + new_data[chosen_row][0] + " " + new_data[chosen_row][2] + "?")
+      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,chosen_row));
+      return randomly_order_answers(new_data[chosen_row][4],new_data[random_rows[0]][4], new_data[random_rows[1]][4]);
     },
 
-    ask_event_in_japan_question:function(new_data,random_row){       
-      this.$set(this.question,"value","What was happening in Japan when "  + new_data[random_row][0] + " " + new_data[random_row][2] +  "?")
-      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,random_row));
-      return randomly_order_answers(new_data[random_row][5],new_data[random_rows[0]][5], new_data[random_rows[1]][5]);
+    ask_event_in_japan_question:function(new_data,chosen_row){       
+      this.$set(this.question,"value","What was happening in Japan when "  + new_data[chosen_row][0] + " " + new_data[chosen_row][2] +  "?")
+      this.$set(this.random_rows,"value",pick_two_random_rows(new_data,chosen_row));
+      return randomly_order_answers(new_data[chosen_row][5],new_data[random_rows[0]][5], new_data[random_rows[1]][5]);
     },
 
-    ask_period_question:function(new_data,random_row){       
-      this.$set(this.question,"value","Please choose Japanese era when "  + new_data[random_row][0] + " " + new_data[random_row][2] +  "?")
-      this.$set(this.random_rows ,"value", pick_two_random_rows(new_data,random_row));
-      return randomly_order_answers(new_data[random_row][6],new_data[random_rows[0]][6], new_data[random_rows[1]][6]);
+    ask_period_question:function(new_data,chosen_row){       
+      this.$set(this.question,"value","Please choose Japanese era when "  + new_data[chosen_row][0] + " " + new_data[chosen_row][2] +  "?")
+      this.$set(this.random_rows ,"value", pick_two_random_rows(new_data,chosen_row));
+      return randomly_order_answers(new_data[chosen_row][6],new_data[random_rows[0]][6], new_data[random_rows[1]][6]);
     },
 
     gameplay:function(new_data,current_round,random_row){
       this.round_num="Current Round: " + current_round
       this.random_row = Math.random()*(new_data.length-1)+1
-      var len_of_first_row = new_data[0]
       this.random_column=Math.random()*(new_data[0].length-1)
       var question_type = this.what_type_of_question(random_column)
 
